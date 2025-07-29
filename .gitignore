@@ -16,6 +16,9 @@
 # next.js
 /.next/
 /out/
+/.open-next
+/.wrangler
+/.claude
 
 # production
 /build
@@ -39,3 +42,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+#git
+/.gitignore
+.gitignore
