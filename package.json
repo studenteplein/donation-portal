@@ -4,24 +4,26 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx open-next@latest build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "preview": "wrangler pages dev",
-    "deploy": "wrangler deploy"
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
     "@effect/platform": "^0.90.0",
     "@effect/schema": "^0.75.5",
     "@hookform/resolvers": "^5.2.0",
-    "@opennextjs/cloudflare": "^1.6.1",
+    "@opennextjs/cloudflare": "^1.6.2",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "effect": "^3.17.2",
     "lucide-react": "^0.526.0",
-    "next": "15.4.4",
+    "next": "^15.3.0",
+    "open-next": "^3.0.8",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-hook-form": "^7.61.1",
@@ -37,6 +39,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.4.4",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.26.1"
   }
 }

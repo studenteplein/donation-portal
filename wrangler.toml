@@ -1,23 +1,31 @@
+main = ".open-next/worker.js"
 name = "donation-portal"
-compatibility_date = "2024-09-25"
+compatibility_date = "2025-03-25"
 compatibility_flags = ["nodejs_compat"]
 
 [assets]
 directory = ".open-next/assets"
 binding = "ASSETS"
 
-main = ".open-next/worker.js"
-
-[[kv_namespaces]]
-binding = "PAYSTACK_KV"
-id = "your_kv_namespace_id"
-preview_id = "your_preview_kv_namespace_id"
-
 [vars]
-ENVIRONMENT = "development"
-NEXT_PUBLIC_PLAN_MONTHLY_100= "PLN_6esb90pg4anp9zq"
-NEXT_PUBLIC_APP_URL= "http://localhost:3003"
+ENVIRONMENT = "production"
+NEXT_PUBLIC_APP_URL = "https://skenk.studenteplein.org.za"
+
+# Monthly Plans
+NEXT_PUBLIC_PLAN_MONTHLY_100 = "PLN_v44a8k8fb6y2atc"
+NEXT_PUBLIC_PLAN_MONTHLY_200 = "PLN_gbdvu0avcfc0pam"
+NEXT_PUBLIC_PLAN_MONTHLY_500 = "PLN_cxf9b3batni3vbw"
+NEXT_PUBLIC_PLAN_MONTHLY_1000 = "PLN_pjim6eus6gb4cps"
+NEXT_PUBLIC_PLAN_MONTHLY_2000 = "PLN_3qmpozj5pw7zywn"
+NEXT_PUBLIC_PLAN_MONTHLY_5000 = "PLN_wbvihpcg770t4et"
+
+# Annual Plans
+NEXT_PUBLIC_PLAN_ANNUAL_1200 = "PLN_95wv2r523jlipyo"
+NEXT_PUBLIC_PLAN_ANNUAL_2400 = "PLN_71kwj3au6tcys9p"
+NEXT_PUBLIC_PLAN_ANNUAL_6000 = "PLN_zc8fhee0zlrwtqf"
+NEXT_PUBLIC_PLAN_ANNUAL_12000 = "PLN_bm2ybbv7m421xbv"
+NEXT_PUBLIC_PLAN_ANNUAL_15000 = "PLN_2yp34fcr8vj03j5"
+NEXT_PUBLIC_PLAN_ANNUAL_20000 = "PLN_ecx205ldzx198yh"
 
 # Environment variables will be set separately for security
-# PAYSTACK_PUBLIC_KEY will be available in production
-# PAYSTACK_SECRET_KEY will be stored as a secret
+# NEXT_PAYSTACK_SECRET_KEY will be stored as a secret

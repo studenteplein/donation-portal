@@ -1,12 +1,12 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, XCircle, Loader2, Heart, Mail, CreditCard } from "lucide-react"
 
-export default function CallbackPage() {
+function CallbackContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [status, setStatus] = useState<"loading" | "success" | "error">("loading")
@@ -279,5 +279,32 @@ export default function CallbackPage() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+export default function CallbackPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-b from-slate-50 via-background to-slate-100 dark:from-slate-900 dark:via-background dark:to-slate-800 flex items-center justify-center p-4">
+        <Card className="w-full max-w-lg shadow-xl">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl">Betaling word verwerk...</CardTitle>
+            <CardDescription className="text-base">
+              Jou skenkingtransaksie word geverifieer
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col items-center space-y-4">
+              <Loader2 className="h-12 w-12 animate-spin text-primary" />
+              <p className="text-muted-foreground">
+                Wag asseblief terwyl ons jou betaling verwerk...
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    }>
+      <CallbackContent />
+    </Suspense>
   )
 }
