@@ -1,26 +1,193 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+  
+  /* Modern Gray & Navy Color Scheme - Light Mode */
+  --background: oklch(0.98 0.002 220);              /* Very light warm gray */
+  --foreground: oklch(0.15 0.01 220);               /* Dark navy text */
+  --card: oklch(1 0 0);                             /* Pure white cards */
+  --card-foreground: oklch(0.15 0.01 220);          /* Dark navy card text */
+  --popover: oklch(1 0 0);                          /* Pure white popover */
+  --popover-foreground: oklch(0.15 0.01 220);       /* Dark navy popover text */
+  
+  /* Primary: #183340 converted to OKLCH */
+  --primary: oklch(0.207 0.047 220.5);              /* #183340 - Deep navy */
+  --primary-foreground: oklch(0.98 0.002 220);      /* Light gray text on primary */
+  
+  /* Secondary: Lighter navy variations */
+  --secondary: oklch(0.96 0.005 220);               /* Very light navy gray */
+  --secondary-foreground: oklch(0.207 0.047 220.5); /* Primary navy text */
+  
+  /* Muted: Medium grays */
+  --muted: oklch(0.95 0.005 220);                   /* Light muted gray */
+  --muted-foreground: oklch(0.45 0.02 220);         /* Medium gray text */
+  
+  /* Accent: Slightly warmer gray */
+  --accent: oklch(0.94 0.008 220);                  /* Light accent gray */
+  --accent-foreground: oklch(0.25 0.03 220);        /* Dark accent text */
+  
+  /* UI Elements */
+  --destructive: oklch(0.577 0.245 27.325);         /* Red for errors */
+  --border: oklch(0.92 0.008 220);                  /* Light gray borders */
+  --input: oklch(0.92 0.008 220);                   /* Light gray inputs */
+  --ring: oklch(0.207 0.047 220.5);                 /* Primary navy for focus rings */
+  
+  /* Charts - Navy variations */
+  --chart-1: oklch(0.207 0.047 220.5);              /* Primary navy */
+  --chart-2: oklch(0.35 0.08 220);                  /* Medium navy */
+  --chart-3: oklch(0.55 0.06 220);                  /* Light navy */
+  --chart-4: oklch(0.65 0.04 220);                  /* Very light navy */
+  --chart-5: oklch(0.75 0.02 220);                  /* Pale navy */
+  
+  /* Sidebar */
+  --sidebar: oklch(0.99 0.001 220);                 /* Very light sidebar */
+  --sidebar-foreground: oklch(0.15 0.01 220);       /* Dark sidebar text */
+  --sidebar-primary: oklch(0.207 0.047 220.5);      /* Primary navy */
+  --sidebar-primary-foreground: oklch(0.98 0.002 220); /* Light sidebar primary text */
+  --sidebar-accent: oklch(0.94 0.008 220);          /* Light sidebar accent */
+  --sidebar-accent-foreground: oklch(0.25 0.03 220); /* Dark sidebar accent text */
+  --sidebar-border: oklch(0.92 0.008 220);          /* Light sidebar border */
+  --sidebar-ring: oklch(0.207 0.047 220.5);         /* Primary navy ring */
+}
+
+.dark {
+  /* Modern Gray & Navy Color Scheme - Dark Mode */
+  --background: oklch(0.08 0.01 220);               /* Very dark navy background */
+  --foreground: oklch(0.95 0.005 220);              /* Light gray text */
+  --card: oklch(0.12 0.015 220);                    /* Dark navy cards */
+  --card-foreground: oklch(0.95 0.005 220);         /* Light gray card text */
+  --popover: oklch(0.12 0.015 220);                 /* Dark navy popover */
+  --popover-foreground: oklch(0.95 0.005 220);      /* Light gray popover text */
+  
+  /* Primary: Lighter variation for dark mode */
+  --primary: oklch(0.75 0.08 220);                  /* Lighter navy for contrast */
+  --primary-foreground: oklch(0.08 0.01 220);       /* Dark background on primary */
+  
+  /* Secondary: Medium navy grays */
+  --secondary: oklch(0.18 0.02 220);                /* Medium dark navy */
+  --secondary-foreground: oklch(0.95 0.005 220);    /* Light gray text */
+  
+  /* Muted: Dark grays */
+  --muted: oklch(0.16 0.02 220);                    /* Dark muted gray */
+  --muted-foreground: oklch(0.65 0.015 220);        /* Medium light gray text */
+  
+  /* Accent: Medium navy */
+  --accent: oklch(0.2 0.025 220);                   /* Dark accent gray */
+  --accent-foreground: oklch(0.9 0.008 220);        /* Light accent text */
+  
+  /* UI Elements */
+  --destructive: oklch(0.704 0.191 22.216);         /* Lighter red for dark mode */
+  --border: oklch(0.2 0.02 220);                    /* Dark gray borders */
+  --input: oklch(0.15 0.02 220);                    /* Dark gray inputs */
+  --ring: oklch(0.75 0.08 220);                     /* Light navy for focus rings */
+  
+  /* Charts - Dark mode navy variations */
+  --chart-1: oklch(0.75 0.08 220);                  /* Light navy */
+  --chart-2: oklch(0.65 0.06 220);                  /* Medium light navy */
+  --chart-3: oklch(0.55 0.04 220);                  /* Medium navy */
+  --chart-4: oklch(0.45 0.03 220);                  /* Medium dark navy */
+  --chart-5: oklch(0.35 0.02 220);                  /* Dark navy */
+  
+  /* Sidebar */
+  --sidebar: oklch(0.1 0.012 220);                  /* Dark sidebar */
+  --sidebar-foreground: oklch(0.95 0.005 220);      /* Light sidebar text */
+  --sidebar-primary: oklch(0.75 0.08 220);          /* Light navy primary */
+  --sidebar-primary-foreground: oklch(0.08 0.01 220); /* Dark sidebar primary text */
+  --sidebar-accent: oklch(0.2 0.025 220);           /* Dark sidebar accent */
+  --sidebar-accent-foreground: oklch(0.9 0.008 220); /* Light sidebar accent text */
+  --sidebar-border: oklch(0.2 0.02 220);            /* Dark sidebar border */
+  --sidebar-ring: oklch(0.75 0.08 220);             /* Light navy ring */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Enhanced animation utilities for donation form focus */
+  .donation-focus-transition {
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hero-blur-transition {
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                filter 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Custom shadow for focused donation form */
+  .shadow-3xl {
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    html, body {
+      overflow-x: hidden;
+    }
+    
+    /* Ensure no excessive padding/margin on mobile */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    /* Fix background attachment on mobile */
+    [style*="background-attachment: fixed"] {
+      background-attachment: scroll !important;
+    }
+    
+    /* Adjust animation intensity for mobile */
+    .hero-blur-transition {
+      transform: none !important;
+      filter: blur(0px) !important;
+    }
+    
+  }
 }

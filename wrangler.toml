@@ -1,0 +1,23 @@
+name = "donation-portal"
+compatibility_date = "2024-09-25"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+main = ".open-next/worker.js"
+
+[[kv_namespaces]]
+binding = "PAYSTACK_KV"
+id = "your_kv_namespace_id"
+preview_id = "your_preview_kv_namespace_id"
+
+[vars]
+ENVIRONMENT = "development"
+NEXT_PUBLIC_PLAN_MONTHLY_100= "PLN_6esb90pg4anp9zq"
+NEXT_PUBLIC_APP_URL= "http://localhost:3003"
+
+# Environment variables will be set separately for security
+# PAYSTACK_PUBLIC_KEY will be available in production
+# PAYSTACK_SECRET_KEY will be stored as a secret
