@@ -13,7 +13,7 @@ import type { DonationPlan } from "@/lib/schemas"
 
 declare global {
   interface Window {
-    PaystackPop: any
+    PaystackPop: unknown
   }
 }
 

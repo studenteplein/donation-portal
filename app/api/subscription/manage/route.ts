@@ -23,7 +23,9 @@ export async function POST(request: NextRequest) {
   });
   return Effect.runPromise(
     handlerEffect.pipe(
-      Effect.catchTag("BadRequestError", (e: BadRequestError) => Effect.succeed(NextResponse.json({ error: e.message }, { status: 400 }))),
+      Effect.catchTags({
+        BadRequestError: (e: BadRequestError) => Effect.succeed(NextResponse.json({ error: e.message }, { status: 400 })),
+      }),
       Effect.catchAll((e: unknown) => {
         console.error("Error generating management link:", e);
         return Effect.succeed(NextResponse.json({ error: "Internal server error" }, { status: 500 }));
@@ -41,7 +43,7 @@ export async function GET(request: NextRequest) {
         Option.isSome(o) ? Effect.succeed(o.value) : Effect.fail(new BadRequestError("Subscription code is required"))
       )
     );
-    const result: { status: boolean; message?: string; data: any } = yield* fetchSubscription(subscription_code);
+    const result: { status: boolean; message?: string; data: unknown } = yield* fetchSubscription(subscription_code);
     if (!result.status) {
       return yield* Effect.fail(new BadRequestError(result.message ?? "Failed to fetch subscription"));
     }
@@ -49,7 +51,9 @@ export async function GET(request: NextRequest) {
   });
   return Effect.runPromise(
     handlerEffect.pipe(
-      Effect.catchTag("BadRequestError", (e: BadRequestError) => Effect.succeed(NextResponse.json({ error: e.message }, { status: 400 }))),
+      Effect.catchTags({
+        BadRequestError: (e: BadRequestError) => Effect.succeed(NextResponse.json({ error: e.message }, { status: 400 })),
+      }),
       Effect.catchAll((e: unknown) => {
         console.error("Error fetching subscription:", e);
         return Effect.succeed(NextResponse.json({ error: "Internal server error" }, { status: 500 }));

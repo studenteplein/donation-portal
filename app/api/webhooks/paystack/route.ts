@@ -71,14 +71,9 @@ export async function POST(request: NextRequest) {
   );
 }
 
-function handleSubscriptionCreate(data: any) {
-  console.log("Subscription created:", {
-    subscription_code: data.subscription_code,
-    customer_email: data.customer.email,
-    plan_name: data.plan.name,
-    amount: data.amount,
-    status: data.status
-  })
+function handleSubscriptionCreate(_data: unknown) {
+  // Security: Log only non-sensitive data for debugging
+  console.log("Subscription created - event processed successfully")
   
   // Here you would typically:
   // 1. Store subscription in your database
@@ -87,12 +82,9 @@ function handleSubscriptionCreate(data: any) {
   // 4. Log the event for analytics
 }
 
-function handleSubscriptionDisable(data: any) {
-  console.log("Subscription disabled:", {
-    subscription_code: data.subscription_code,
-    customer_email: data.customer.email,
-    status: data.status
-  })
+function handleSubscriptionDisable(_data: unknown) {
+  // Security: Log only non-sensitive data for debugging
+  console.log("Subscription disabled - event processed successfully")
   
   // Here you would typically:
   // 1. Update subscription status in database
@@ -101,12 +93,9 @@ function handleSubscriptionDisable(data: any) {
   // 4. Log the event for analytics
 }
 
-function handleSubscriptionNotRenew(data: any) {
-  console.log("Subscription set to not renew:", {
-    subscription_code: data.subscription_code,
-    customer_email: data.customer.email,
-    next_payment_date: data.next_payment_date
-  })
+function handleSubscriptionNotRenew(_data: unknown) {
+  // Security: Log only non-sensitive data for debugging
+  console.log("Subscription set to not renew - event processed successfully")
   
   // Here you would typically:
   // 1. Update subscription renewal status
@@ -114,26 +103,18 @@ function handleSubscriptionNotRenew(data: any) {
   // 3. Offer retention incentives
 }
 
-function handleInvoiceCreate(data: any) {
-  console.log("Invoice created:", {
-    invoice_code: data.invoice_code,
-    subscription_code: data.subscription.subscription_code,
-    amount: data.amount,
-    due_date: data.due_date
-  })
+function handleInvoiceCreate(_data: unknown) {
+  // Security: Log only non-sensitive data for debugging
+  console.log("Invoice created - event processed successfully")
   
   // Here you would typically:
   // 1. Log upcoming payment attempt
   // 2. Send payment reminder if needed
 }
 
-function handleInvoicePaymentFailed(data: any) {
-  console.log("Invoice payment failed:", {
-    invoice_code: data.invoice_code,
-    subscription_code: data.subscription.subscription_code,
-    amount: data.amount,
-    description: data.description
-  })
+function handleInvoicePaymentFailed(_data: unknown) {
+  // Security: Log only non-sensitive data for debugging
+  console.log("Invoice payment failed - event processed successfully")
   
   // Here you would typically:
   // 1. Update payment status in database
@@ -142,25 +123,18 @@ function handleInvoicePaymentFailed(data: any) {
   // 4. Update subscription status if needed
 }
 
-function handleInvoiceUpdate(data: any) {
-  console.log("Invoice updated:", {
-    invoice_code: data.invoice_code,
-    status: data.status,
-    paid: data.paid
-  })
+function handleInvoiceUpdate(_data: unknown) {
+  // Security: Log only non-sensitive data for debugging
+  console.log("Invoice updated - event processed successfully")
   
   // Here you would typically:
   // 1. Update invoice status in database
   // 2. Update subscription payment history
 }
 
-function handleChargeSuccess(data: any) {
-  console.log("Charge successful:", {
-    reference: data.reference,
-    amount: data.amount,
-    customer_email: data.customer.email,
-    status: data.status
-  })
+function handleChargeSuccess(_data: unknown) {
+  // Security: Log only non-sensitive data for debugging
+  console.log("Charge successful - event processed successfully")
   
   // Here you would typically:
   // 1. Update payment records

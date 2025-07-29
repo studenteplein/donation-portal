@@ -7,17 +7,20 @@ import { pipe } from "effect/Function"
 import { PaystackError } from "@/lib/paystack-service"
 
 // Helper function to filter sensitive data
-function createSafeTransactionResponse(transaction: any) {
+function createSafeTransactionResponse(transaction: Record<string, unknown>) {
+  const customer = transaction.customer as Record<string, unknown> | undefined
+  const metadata = transaction.metadata as Record<string, unknown> | undefined
+  
   return {
     amount: transaction.amount,
     currency: transaction.currency,
     reference: transaction.reference,
     plan: transaction.plan,
     customer: {
-      email: transaction.customer?.email
+      email: customer?.email
     },
     metadata: {
-      plan_interval: transaction.metadata?.plan_interval
+      plan_interval: metadata?.plan_interval
     }
   }
 }
@@ -31,14 +34,17 @@ export async function GET(request: NextRequest) {
         Option.isSome(o) ? Effect.succeed(o.value) : Effect.fail(new BadRequestError("Transaction reference is required"))
       )
     );
-    const result: { status: boolean; message?: string; data: any } = yield* verifyTransaction(reference);
+    const result: { status: boolean; message?: string; data: Record<string, unknown> } = yield* verifyTransaction(reference);
     if (!result.status) {
       return yield* Effect.fail(new BadRequestError(result.message ?? "Failed to verify transaction"));
     }
     const transaction = result.data;
     if (transaction.status !== "success") {
       return yield* Effect.fail(
-        new TransactionFailedError(transaction.status, transaction.gateway_response)
+        new TransactionFailedError(
+          String(transaction.status || 'unknown'), 
+          String(transaction.gateway_response || 'No gateway response')
+        )
       );
     }
     return NextResponse.json({
@@ -69,7 +75,7 @@ export async function POST(request: NextRequest) {
         Option.isSome(o) ? Effect.succeed(o.value) : Effect.fail(new BadRequestError("Transaction reference is required"))
       )
     );
-    const result: { status: boolean; message?: string; data: any } = yield* verifyTransaction(reference);
+    const result: { status: boolean; message?: string; data: Record<string, unknown> } = yield* verifyTransaction(reference);
     if (!result.status) {
       return yield* Effect.fail(new BadRequestError(result.message ?? "Failed to verify transaction"));
     }

@@ -11,7 +11,7 @@ function CallbackContent() {
   const router = useRouter()
   const [status, setStatus] = useState<"loading" | "success" | "error">("loading")
   const [message, setMessage] = useState("")
-  const [transactionData, setTransactionData] = useState<any>(null)
+  const [transactionData, setTransactionData] = useState<Record<string, unknown> | null>(null)
 
   useEffect(() => {
     const reference = searchParams.get("reference")
@@ -88,12 +88,13 @@ function CallbackContent() {
 
       case "success":
         const isSubscription = transactionData?.plan
-        const planInterval = transactionData?.metadata?.plan_interval
+        const metadata = transactionData?.metadata as Record<string, unknown> | undefined
+        const planInterval = metadata?.plan_interval
         const donationAmount = transactionData ? new Intl.NumberFormat("en-ZA", {
           style: "currency",
-          currency: transactionData.currency || "ZAR",
+          currency: String(transactionData.currency) || "ZAR",
           minimumFractionDigits: 0,
-        }).format(transactionData.amount / 100) : ""
+        }).format(Number(transactionData.amount) / 100) : ""
 
         const getFrequencyText = () => {
           if (!isSubscription) return null
@@ -138,7 +139,7 @@ function CallbackContent() {
                     <span className="text-xl font-bold text-primary">{donationAmount}</span>
                   </div>
                   
-                  {isSubscription && (
+                  {Boolean(isSubscription) && (
                     <div className="flex justify-between items-center py-2 border-b border-border">
                       <span className="font-medium text-foreground">Frekwensie</span>
                       <span className="text-muted-foreground">{getFrequencyText()}</span>
@@ -147,12 +148,12 @@ function CallbackContent() {
                   
                   <div className="flex justify-between items-center py-2 border-b border-border">
                     <span className="font-medium text-foreground">E-posadres</span>
-                    <span className="text-muted-foreground">{transactionData.customer?.email}</span>
+                    <span className="text-muted-foreground">{String((transactionData.customer as Record<string, unknown>)?.email || '')}</span>
                   </div>
                   
                   <div className="flex justify-between items-center py-2">
                     <span className="font-medium text-foreground">Verwysing</span>
-                    <span className="text-sm text-muted-foreground font-mono">{transactionData.reference}</span>
+                    <span className="text-sm text-muted-foreground font-mono">{String(transactionData.reference)}</span>
                   </div>
                 </div>
               </div>
@@ -166,7 +167,7 @@ function CallbackContent() {
                 </p>
               </div>
               
-              {isSubscription && (
+              {Boolean(isSubscription) && (
                 <div className="bg-secondary p-4 rounded-lg border border-border">
                   <p className="text-sm text-secondary-foreground">
                     <strong>Herhalende betaling:</strong> Jou kaart sal {planInterval === "annually" ? "jaarliks" : "maandeliks"} met {donationAmount} gedebiteer word. 
