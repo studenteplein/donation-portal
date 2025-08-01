@@ -44,7 +44,6 @@ export async function POST(request: NextRequest) {
       }
     };
     
-    console.log('Initializing Paystack transaction with:', JSON.stringify(initializationRequest, null, 2));
     
     const result: { status: boolean; message?: string; data: { access_code: string; authorization_url: string; reference: string } } = yield* initializeTransaction(initializationRequest);
     if (!result.status) {

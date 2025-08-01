@@ -18,10 +18,12 @@ A secure, modern donation platform built for StudentePlein - supporting Afrikaan
 
 ### Security Features
 - **🛡️ Enterprise Security Headers**: CSP, HSTS, X-Frame-Options, and more
-- **🔒 Secure Payment Processing**: PCI-compliant Paystack integration
+- **🔒 PCI DSS Compliant**: SAQ A level compliance with zero cardholder data exposure
+- **💳 Secure Payment Processing**: PCI Level 1 certified Paystack integration
 - **✅ Input Validation**: Comprehensive server-side validation with Zod schemas
-- **🚨 Webhook Security**: HMAC signature verification for payment webhooks
+- **🚨 Webhook Security**: HMAC SHA-512 signature verification for payment webhooks
 - **🔐 Type Safety**: Full TypeScript implementation with strict checking
+- **📋 Formal Security Policy**: Comprehensive security governance and procedures
 
 ### Developer Experience
 - **📁 Modern Architecture**: Next.js App Router with server components
@@ -96,7 +98,9 @@ donation-portal/
 │   └── utils.ts                  # Helper utilities
 ├── middleware.ts                 # Security headers and middleware
 ├── wrangler.toml                 # Cloudflare Workers configuration
-└── next.config.ts                # Next.js configuration
+├── next.config.ts                # Next.js configuration
+├── SECURITY_POLICY.md            # Formal information security policy
+└── PCI_COMPLIANCE_PROCEDURES.md  # PCI DSS compliance procedures
 ```
 
 ## 🔧 Development
@@ -153,28 +157,35 @@ The project enforces high code quality standards:
 - **Type Safety**: Comprehensive TypeScript coverage
 - **Error Handling**: Graceful error boundaries throughout
 
-## 🔒 Security
+## 🔒 Security & Compliance
 
-This application implements enterprise-grade security:
+This application implements **enterprise-grade security** with **formal PCI DSS compliance**:
 
-### Security Headers
-- **Content Security Policy (CSP)**: Prevents XSS attacks
-- **X-Frame-Options**: Prevents clickjacking
-- **X-Content-Type-Options**: Prevents MIME sniffing
-- **Strict-Transport-Security**: Enforces HTTPS
-- **Referrer-Policy**: Controls referrer information
+### PCI DSS Compliance
+- **✅ SAQ A Level**: Self-Assessment Questionnaire A compliance
+- **🚫 Zero Cardholder Data**: No card data storage, processing, or transmission
+- **🏛️ PCI Level 1 Provider**: All payment processing via certified Paystack
+- **📋 Formal Procedures**: Comprehensive compliance documentation and monitoring
+- **🔍 Regular Audits**: Quarterly vulnerability scans and annual assessments
 
-### Payment Security
-- **PCI Compliance**: No card data stored locally
-- **Webhook Verification**: HMAC SHA-512 signature validation
-- **Secure Redirects**: Validated callback URLs
-- **Data Filtering**: Sensitive data excluded from logs
+### Security Architecture
+- **🛡️ Security Headers**: CSP, HSTS, X-Frame-Options, X-Content-Type-Options
+- **🔐 Secure Payment Flow**: Redirect-based architecture eliminates PCI scope
+- **🚨 Webhook Security**: HMAC SHA-512 signature verification
+- **✅ Input Validation**: Server-side validation with Zod schemas
+- **🔒 Data Protection**: Sensitive data filtering and secure transmission
 
-### Development Security
-- **Type Safety**: Prevents runtime type errors
-- **Input Validation**: Server-side validation with Zod
-- **Error Boundaries**: Graceful error handling
-- **Security Auditing**: Regular dependency vulnerability checks
+### Compliance Documentation
+- **[SECURITY_POLICY.md](./SECURITY_POLICY.md)**: Comprehensive information security policy
+- **[PCI_COMPLIANCE_PROCEDURES.md](./PCI_COMPLIANCE_PROCEDURES.md)**: Detailed PCI DSS compliance procedures
+- **Security Controls**: Documented security controls and validation procedures
+- **Incident Response**: Formal incident response and escalation procedures
+
+### Security Monitoring
+- **🚦 Continuous Monitoring**: Automated vulnerability scanning and alerts
+- **📊 Compliance Tracking**: Regular compliance validation and reporting
+- **🔍 Security Testing**: Regular penetration testing and security assessments
+- **📈 Security Metrics**: KPI tracking for security and compliance posture
 
 ## 🌐 Deployment
 
@@ -265,6 +276,8 @@ npx tsc --noEmit
 - Maintain test coverage
 - Use conventional commit messages
 - Ensure security best practices
+- Review security policy before contributing
+- Validate PCI compliance impact of changes
 
 ## 📄 License
 
@@ -276,6 +289,8 @@ For support, please contact:
 - **Technical Issues**: [Create an issue](https://github.com/repository/issues)
 - **General Support**: support@studenteplein.com
 - **Payment Issues**: Verify with Paystack support
+- **Security Issues**: security@studenteplein.com
+- **Compliance Questions**: Review SECURITY_POLICY.md and PCI_COMPLIANCE_PROCEDURES.md
 
 ---
 

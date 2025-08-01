@@ -116,6 +116,30 @@ export const ANNUAL_PLANS: DonationPlan[] = [
 
 export const ONE_OFF_PLANS: DonationPlan[] = [
   {
+    id: "one-off-100",
+    name: "R100 One-Off",
+    amount: 100,
+    currency: "ZAR",
+    interval: "one-off",
+    description: "Support with R100 one-time donation"
+  },
+  {
+    id: "one-off-200",
+    name: "R200 One-Off",
+    amount: 200,
+    currency: "ZAR",
+    interval: "one-off",
+    description: "Support with R200 one-time donation"
+  },
+  {
+    id: "one-off-500",
+    name: "R500 One-Off",
+    amount: 500,
+    currency: "ZAR",
+    interval: "one-off",
+    description: "Support with R500 one-time donation"
+  },
+  {
     id: "one-off-1000",
     name: "R1,000 One-Off",
     amount: 1000,
@@ -130,14 +154,6 @@ export const ONE_OFF_PLANS: DonationPlan[] = [
     currency: "ZAR",
     interval: "one-off",
     description: "Support with R2,000 one-time donation"
-  },
-  {
-    id: "one-off-3000",
-    name: "R3,000 One-Off",
-    amount: 3000,
-    currency: "ZAR",
-    interval: "one-off",
-    description: "Support with R3,000 one-time donation"
   },
   {
     id: "one-off-4000",
@@ -162,6 +178,14 @@ export const ONE_OFF_PLANS: DonationPlan[] = [
     currency: "ZAR",
     interval: "one-off",
     description: "Support with R10,000 one-time donation"
+  },
+  {
+    id: "one-off-20000",
+    name: "R20,000 One-Off",
+    amount: 20000,
+    currency: "ZAR",
+    interval: "one-off",
+    description: "Support with R20,000 one-time donation"
   }
 ]
 

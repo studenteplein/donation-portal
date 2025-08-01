@@ -95,7 +95,7 @@ export function DonorInfoForm({
 
         {/* Email */}
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-xs">E-pos Adres *</Label>
+          <Label htmlFor="email" className="text-xs">E-posadres *</Label>
           <Input
             id="email"
             type="email"
